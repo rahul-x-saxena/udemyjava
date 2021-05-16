@@ -3,6 +3,7 @@ package streams;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class streams {
@@ -27,5 +28,18 @@ public class streams {
 
         List<Integer> reverseSortedShortcutList = intList.stream().sorted((i1,i2) -> -i1.compareTo(i2)).collect(Collectors.toList());
         System.out.println(reverseSortedShortcutList);
+
+        // Use min() function
+        Optional<Integer> optionalMinValue = intList.stream().min((i1,i2) -> i1.compareTo(i2));
+        optionalMinValue.ifPresent(i -> System.out.println("Min value is " + i));
+        Integer minValue = intList.stream().min((i1,i2) -> i1.compareTo(i2)).get();
+        System.out.println("Min Value by another way " + minValue);
+
+        // Use max() function
+        Optional<Integer> optionalMaxValue = intList.stream().max((i1,i2) -> i1.compareTo(i2));
+        optionalMaxValue.ifPresent(i -> System.out.println("Max value is " + i));
+        Integer maxValue = intList.stream().max((i1,i2) -> i1.compareTo(i2)).get();
+        System.out.println("Min Value by another way " + maxValue);
     }
+
 }
