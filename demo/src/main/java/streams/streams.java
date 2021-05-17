@@ -1,10 +1,8 @@
 package streams;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class streams {
     public static void main(String[] args) {
@@ -40,6 +38,21 @@ public class streams {
         optionalMaxValue.ifPresent(i -> System.out.println("Max value is " + i));
         Integer maxValue = intList.stream().max((i1,i2) -> i1.compareTo(i2)).get();
         System.out.println("Min Value by another way " + maxValue);
+
+        //Use toArray() function
+        //intList.stream().toArray(new Integer<>[] );
+        Integer[] firstArray = intList.stream().toArray(Integer[] :: new);
+        Integer[] secondArray = intList.stream().toArray((i) -> new Integer[i]);
+        for (int i : firstArray){
+            System.out.println("Elements in firstArray " + i);
+        }
+
+        for (int i : secondArray){
+            System.out.println("Elements in secondArray " + i);
+        }
+        //stream.of() use
+        Stream<Integer> s = Stream.of(1,20,3,4,5,6,7,8,9,10);
+        s.forEach(i -> System.out.println("Elements " + i));
     }
 
 }
